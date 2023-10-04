@@ -1,4 +1,5 @@
 import { generateProtocolForPacient } from "protocols-generator";
+import { jest } from "@jest/globals";
 
 
 jest.mock("uuid", () => {
@@ -8,13 +9,16 @@ jest.mock("uuid", () => {
 });
 
 describe("pacient protocol tests", () => {
-  const result = generateProtocolForPacient("Nilton", "Rodrigues", true)
-  // expect(result).toEqual({
-  //   priority: true,
-  //   date: new Date(),
-  //   pacient: "Nilton Rodrigues",
-  //   protocol: expect.any(String),
-  // });
-  expect(result.protocol).toBe("protocol generate")
-  console.log(result)
+
+  it("should generate a protocol", () => {
+    const result = generateProtocolForPacient("Nilton", "Rodrigues", true)
+    expect(result).toEqual({
+      priority: true,
+      date: new Date(),
+      pacient: "Nilton Rodrigues",
+      protocol: expect.any(String),
+    });
+    console.log(result)
+  })
+ 
 });
